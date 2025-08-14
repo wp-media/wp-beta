@@ -231,7 +231,7 @@ class Beta {
 
 		printf(
 			'</p><p class="beta-update-notice">%s',
-			$this->update_message
+			esc_html( $this->update_message )
 		);
 	}
 }
