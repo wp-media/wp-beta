@@ -40,18 +40,27 @@ class Beta {
 	private $version;
 
 	/**
+	 * The update message.
+	 *
+	 * @var string
+	 */
+	private $update_message;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param Optin  $optin       The opt-in instance.
-	 * @param string $file        The plugin file.
-	 * @param string $plugin_slug The plugin slug.
-	 * @param string $version     The current version of the plugin.
+	 * @param Optin  $optin          The opt-in instance.
+	 * @param string $file           The plugin file.
+	 * @param string $plugin_slug    The plugin slug.
+	 * @param string $version        The current version of the plugin.
+	 * @param string $update_message The update message.
 	 */
-	public function __construct( Optin $optin, string $file, string $plugin_slug, string $version ) {
-		$this->optin       = $optin;
-		self::$file        = $file;
-		$this->plugin_slug = $plugin_slug;
-		$this->version     = $version;
+	public function __construct( Optin $optin, string $file, string $plugin_slug, string $version, string $update_message ) {
+		$this->optin          = $optin;
+		self::$file           = $file;
+		$this->plugin_slug    = $plugin_slug;
+		$this->version        = $version;
+		$this->update_message = $update_message;
 	}
 
 	/**
@@ -162,7 +171,7 @@ class Beta {
 		}
 
 		$value->response[ self::$file ]->is_beta        = true;
-		$value->response[ self::$file ]->upgrade_notice = sprintf( __( 'This update will install a beta version of %s.', $this->plugin_slug ), esc_html( ucfirst( $this->plugin_slug ) ) );
+		$value->response[ self::$file ]->upgrade_notice = $this->update_message;
 
 		if ( empty( $value->no_update ) ) {
 			$value->no_update = [];
@@ -222,10 +231,7 @@ class Beta {
 
 		printf(
 			'</p><p class="beta-update-notice">%s',
-			sprintf(
-				esc_html__( 'This update will install a beta version of %s', 'rank-math' ),
-				esc_html( $plugin_data['Name'] )
-			)
+			$this->update_message
 		);
 	}
 }
