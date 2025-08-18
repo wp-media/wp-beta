@@ -44,9 +44,9 @@ class TransientUpdatePluginsTest extends TestCase {
 		);
 	}
 
-    /**
-     * Clean up the test environment.
-     */
+	/**
+	 * Clean up the test environment.
+	 */
 	public function tear_down() {
 		delete_option( 'test_plugin_beta_optin' );
 		delete_transient( 'test_plugin_trunk_version' );
