@@ -64,6 +64,16 @@ class Beta {
 	}
 
 	/**
+	 * Registers the hooks for the beta functionality.
+	 *
+	 * @return void
+	 */
+	public function init(): void {
+		add_filter( 'site_transient_update_plugins', [ $this, 'transient_update_plugins' ] );
+		add_action( 'in_plugin_update_message-' . self::$file, [ $this, 'plugin_update_message' ] );
+	}
+
+	/**
 	 * Add the beta version to the update transient.
 	 *
 	 * @param \stdClass $transient The transient object.
