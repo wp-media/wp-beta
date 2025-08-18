@@ -10,53 +10,77 @@ use WPMedia\Beta\Optin;
 use WPMedia\Beta\Tests\Unit\TestCase;
 
 /**
+ * Test the transient update plugins functionality.
+ *
  * @covers WPMedia\Beta\Beta::transient_update_plugins
  * @group Beta
  */
 class TransientUpdatePluginsTest extends TestCase {
-    private $optin;
-    private $beta;
+	/**
+	 * Optin instance.
+	 *
+	 * @var Mockery\MockInterface|Optin
+	 */
+	private $optin;
 
-    protected function set_up() {
-        parent::set_up();
+	/**
+	 * Beta instance.
+	 *
+	 * @var Beta
+	 */
+	private $beta;
 
-        $this->stubEscapeFunctions();
+	/**
+	 * Set up the test environment.
+	 */
+	protected function set_up() {
+		parent::set_up();
 
-        $this->optin = Mockery::mock(Optin::class);
+		$this->stubEscapeFunctions();
 
-        $this->beta = new Beta(
-            $this->optin,
-            'test-plugin/test-plugin.php',
-            'test_plugin',
-            '1.0.0',
-            'This is a beta update message.'
-        );
-    }
+		$this->optin = Mockery::mock( Optin::class );
 
-    /**
-     * @dataProvider configTestData
-     */
-    public function testShouldReturnExpected( $config, $transient, $expected ) {
-        $this->optin->shouldReceive( 'is_enabled' )
-            ->once()
-            ->andReturn( $config['optin_enabled'] );
+		$this->beta = new Beta(
+			$this->optin,
+			'test-plugin/test-plugin.php',
+			'test_plugin',
+			'1.0.0',
+			'This is a beta update message.'
+		);
+	}
 
-        Functions\expect( 'get_transient' )
-            ->with( 'test_plugin_trunk_version' )
-            ->atMost()
-            ->once()
-            ->andReturn( $config['transient_trunk'] );
+	/**
+	 * Test the transient update plugins functionality.
+	 *
+	 * @dataProvider configTestData
+	 *
+	 * @param mixed[]   $config    The configuration for the test.
+	 * @param \stdClass $transient The transient object.
+	 * @param \stdClass $expected  The expected result.
+	 *
+	 * @return void
+	 */
+	public function testShouldReturnExpected( $config, $transient, $expected ): void {
+		$this->optin->shouldReceive( 'is_enabled' )
+			->once()
+			->andReturn( $config['optin_enabled'] );
 
-        $transient = $this->beta->transient_update_plugins( $transient );
+		Functions\expect( 'get_transient' )
+			->with( 'test_plugin_trunk_version' )
+			->atMost()
+			->once()
+			->andReturn( $config['transient_trunk'] );
 
-        $this->assertEquals(
-            $expected->response,
-            $transient->response
-        );
+		$transient = $this->beta->transient_update_plugins( $transient );
 
-        $this->assertEquals(
-            $expected->no_update,
-            $transient->no_update
-        );
-    }
+		$this->assertEquals(
+			$expected->response,
+			$transient->response
+		);
+
+		$this->assertEquals(
+			$expected->no_update,
+			$transient->no_update
+		);
+	}
 }

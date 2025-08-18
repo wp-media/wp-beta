@@ -9,43 +9,67 @@ use WPMedia\Beta\Optin;
 use WPMedia\Beta\Tests\Unit\TestCase;
 
 /**
+ * Test the plugin update message output.
+ *
  * @covers WPMedia\Beta\Beta::plugin_update_message
  * @group Beta
  */
 class PluginUpdateMessageTest extends TestCase {
-    private $optin;
-    private $beta;
+	/**
+	 * Optin instance.
+	 *
+	 * @var Mockery\MockInterface|Optin
+	 */
+	private $optin;
 
-    protected function set_up() {
-        parent::set_up();
+	/**
+	 * Beta instance.
+	 *
+	 * @var Beta
+	 */
+	private $beta;
 
-        $this->stubEscapeFunctions();
+	/**
+	 * Set up the test environment.
+	 */
+	protected function set_up() {
+		parent::set_up();
 
-        $this->optin = Mockery::mock(Optin::class);
+		$this->stubEscapeFunctions();
 
-        $this->beta = new Beta(
-            $this->optin,
-            'test-plugin/test-plugin.php',
-            'test_plugin',
-            '1.0.0',
-            'This is a beta update message.'
-        );
-    }
+		$this->optin = Mockery::mock( Optin::class );
 
-    /**
-     * @dataProvider configTestData
-     */
-    public function testShouldDoExpected( $config, $expected ) {
-        $this->optin->shouldReceive( 'is_enabled' )
-            ->once()
-            ->andReturn( $config['optin_enabled'] );
+		$this->beta = new Beta(
+			$this->optin,
+			'test-plugin/test-plugin.php',
+			'test_plugin',
+			'1.0.0',
+			'This is a beta update message.'
+		);
+	}
 
-        $this->beta->plugin_update_message( $config['data'] );
+	/**
+	 * Test the plugin update message output.
+	 *
+	 * @dataProvider configTestData
+	 *
+	 * @param bool     $status   Whether the beta is enabled.
+	 * @param string[] $data     The data array.
+	 * @param bool     $expected Whether the output is expected.
+	 *
+	 * @return void
+	 */
+	public function testShouldDoExpected( $status, $data, $expected ): void {
+		$this->optin->shouldReceive( 'is_enabled' )
+			->once()
+			->andReturn( $status );
 
-        if ( ! $expected ) {
-            return;
-        }
+		$this->beta->plugin_update_message( $data );
 
-        $this->expectOutputContains( 'This is a beta update message.' );
-    }
+		if ( ! $expected ) {
+			return;
+		}
+
+		$this->expectOutputContains( 'This is a beta update message.' );
+	}
 }
