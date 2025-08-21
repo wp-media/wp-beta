@@ -39,12 +39,12 @@ $beta->init();
 You should not have to do more to enable the beta system.
 
 ### Parameters explaination
-`$plugin_slug`: The slug used for the plugin as prefix for option/transient
-`$capability`: The capability required to be able to modify the beta option
-`$optin`: The Optin class instance
-`$file`: The path of the plugin’s primary file relative to the plugins directory (for example `test-plugin/test-plugin.php`)
-`$version`: The current stable version of the plugin
-`$update_message`: Message to display when beta update is available (will be shown on the updates page and the plugins list page)
+- `$plugin_slug`: The slug used for the plugin as prefix for option/transient
+- `$capability`: The capability required to be able to modify the beta option
+- `$optin`: The Optin class instance
+- `$file`: The path of the plugin’s primary file relative to the plugins directory (for example `test-plugin/test-plugin.php`)
+- `$version`: The current stable version of the plugin
+- `$update_message`: Message to display when beta update is available (will be shown on the updates page and the plugins list page)
 
 ## Deploy a beta version to the WordPress repository
 
