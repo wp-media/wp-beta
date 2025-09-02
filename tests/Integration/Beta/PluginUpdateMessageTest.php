@@ -83,6 +83,6 @@ class PluginUpdateMessageTest extends TestCase {
 			return;
 		}
 
-		$this->expectOutputContains( 'This is a beta update message.' );
+		$this->expectOutputContains( 'This update will install a beta version of the plugin.' );
 	}
 }
