@@ -55,10 +55,10 @@ class Beta {
 	 * @param string $version     The current version of the plugin.
 	 */
 	public function __construct( Optin $optin, string $file, string $plugin_slug, string $version ) {
-		$this->optin          = $optin;
-		self::$file           = $file;
-		$this->plugin_slug    = $plugin_slug;
-		$this->version        = $version;
+		$this->optin       = $optin;
+		self::$file        = $file;
+		$this->plugin_slug = $plugin_slug;
+		$this->version     = $version;
 	}
 
 	/**
