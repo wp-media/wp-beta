@@ -26,7 +26,7 @@ $beta_transient = (object) [
 			],
 			'banners_rtl'    => [],
 			'is_beta'        => true,
-			'upgrade_notice' => 'This is a beta update message.',
+			'upgrade_notice' => 'This update will install a beta version of the plugin.',
 		],
 	],
 	'no_update' => [],

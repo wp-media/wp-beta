@@ -39,8 +39,7 @@ class TransientUpdatePluginsTest extends TestCase {
 			$this->optin,
 			'test-plugin/test-plugin.php',
 			'test_plugin',
-			'1.0.0',
-			'This is a beta update message.'
+			'1.0.0'
 		);
 	}
 
