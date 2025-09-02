@@ -44,23 +44,21 @@ class Beta {
 	 *
 	 * @var string
 	 */
-	private $update_message;
+	private $update_message = 'This update will install a beta version of the plugin.';
 
 	/**
 	 * Constructor.
 	 *
-	 * @param Optin  $optin          The opt-in instance.
-	 * @param string $file           The plugin file.
-	 * @param string $plugin_slug    The plugin slug.
-	 * @param string $version        The current version of the plugin.
-	 * @param string $update_message The update message.
+	 * @param Optin  $optin       The opt-in instance.
+	 * @param string $file        The plugin file.
+	 * @param string $plugin_slug The plugin slug.
+	 * @param string $version     The current version of the plugin.
 	 */
-	public function __construct( Optin $optin, string $file, string $plugin_slug, string $version, string $update_message ) {
+	public function __construct( Optin $optin, string $file, string $plugin_slug, string $version ) {
 		$this->optin          = $optin;
 		self::$file           = $file;
 		$this->plugin_slug    = $plugin_slug;
 		$this->version        = $version;
-		$this->update_message = $update_message;
 	}
 
 	/**
@@ -71,6 +69,17 @@ class Beta {
 	public function init(): void {
 		add_filter( 'site_transient_update_plugins', [ $this, 'transient_update_plugins' ] );
 		add_action( 'in_plugin_update_message-' . self::$file, [ $this, 'plugin_update_message' ] );
+	}
+
+	/**
+	 * Sets the update message.
+	 *
+	 * @param string $message The update message.
+	 *
+	 * @return void
+	 */
+	public function set_update_message( string $message ): void {
+		$this->update_message = $message;
 	}
 
 	/**
