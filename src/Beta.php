@@ -171,12 +171,16 @@ class Beta {
 	/**
 	 * Inject beta version into the update transient.
 	 *
-	 * @param \stdClass $value        The transient value.
-	 * @param string    $beta_version The beta version number.
+	 * @param \stdClass|false $value        The transient value.
+	 * @param string          $beta_version The beta version number.
 	 *
 	 * @return \stdClass
 	 */
 	private function inject_beta( $value, $beta_version ) {
+		if ( empty( $value ) ) {
+			$value = new \stdClass();
+		}
+
 		if ( empty( $value->response ) ) {
 			$value->response = [];
 		}
@@ -219,14 +223,14 @@ class Beta {
 			'package'     => $package,
 			'icons'       =>
 			[
-				'2x'  => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon-256x256.png?rev=2034417',
-				'1x'  => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.svg?rev=2034417',
-				'svg' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.svg?rev=2034417',
+				'2x'  => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon-256x256.png',
+				'1x'  => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.png',
+				'svg' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.svg',
 			],
 			'banners'     =>
 			[
-				'2x' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/banner-1544x500.png?rev=2034417',
-				'1x' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/banner-772x250.png?rev=2034417',
+				'2x' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/banner-1544x500.jpg',
+				'1x' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/banner-772x250.jpg',
 			],
 			'banners_rtl' => [],
 		];

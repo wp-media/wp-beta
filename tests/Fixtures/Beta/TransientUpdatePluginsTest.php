@@ -16,13 +16,13 @@ $beta_transient = (object) [
 			'url'            => 'https://wordpress.org/plugins/test_plugin/',
 			'package'        => 'https://downloads.wordpress.org/plugin/test_plugin.zip',
 			'icons'          => [
-				'2x'  => 'https://ps.w.org/test_plugin/assets/icon-256x256.png?rev=2034417',
-				'1x'  => 'https://ps.w.org/test_plugin/assets/icon.svg?rev=2034417',
-				'svg' => 'https://ps.w.org/test_plugin/assets/icon.svg?rev=2034417',
+				'2x'  => 'https://ps.w.org/test_plugin/assets/icon-256x256.png',
+				'1x'  => 'https://ps.w.org/test_plugin/assets/icon.png',
+				'svg' => 'https://ps.w.org/test_plugin/assets/icon.svg',
 			],
 			'banners'        => [
-				'2x' => 'https://ps.w.org/test_plugin/assets/banner-1544x500.png?rev=2034417',
-				'1x' => 'https://ps.w.org/test_plugin/assets/banner-772x250.png?rev=2034417',
+				'2x' => 'https://ps.w.org/test_plugin/assets/banner-1544x500.jpg',
+				'1x' => 'https://ps.w.org/test_plugin/assets/banner-772x250.jpg',
 			],
 			'banners_rtl'    => [],
 			'is_beta'        => true,
