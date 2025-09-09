@@ -171,8 +171,8 @@ class Beta {
 	/**
 	 * Inject beta version into the update transient.
 	 *
-	 * @param \stdClass $value        The transient value.
-	 * @param string    $beta_version The beta version number.
+	 * @param \stdClass|false $value        The transient value.
+	 * @param string          $beta_version The beta version number.
 	 *
 	 * @return \stdClass
 	 */
