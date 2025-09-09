@@ -225,7 +225,7 @@ class Beta {
 			[
 				'2x'  => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon-256x256.png',
 				'1x'  => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.png',
-				'svg' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.png',
+				'svg' => 'https://ps.w.org/' . $this->plugin_slug . '/assets/icon.svg',
 			],
 			'banners'     =>
 			[
