@@ -253,7 +253,7 @@ class Beta {
 		}
 
 		printf(
-			'</p><p class="beta-update-notice">%s',
+			'&nbsp;<em>%s</em>',
 			esc_html( $this->update_message )
 		);
 	}
